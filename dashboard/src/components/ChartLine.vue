@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "ChartjsPie"
+  name: "ChartLine"
 }
 </script>
 

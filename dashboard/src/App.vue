@@ -6,7 +6,6 @@
       </div>
       <div class="column is-11">
         <AssetsTable />
-        <LineChart />
       </div>
     </main>
   </main>
@@ -16,11 +15,10 @@
 import { defineComponent } from 'vue';
 import CustomSideBar from "@/components/CustomSideBar.vue";
 import AssetsTable from "@/components/AssetsTable.vue";
-import LineChart from "@/components/lineChart";
 
 export default defineComponent({
   name: 'App',
-  components: {LineChart, AssetsTable, CustomSideBar},
+  components: {AssetsTable, CustomSideBar},
 });
 </script>
 
