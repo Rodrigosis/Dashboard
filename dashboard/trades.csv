@@ -1,0 +1,13 @@
+ativo,quantiade,preco,data_negociacao,tipo_de_ordem,fonte,dono,custo
+IRBR3,-967,0,20230125,agrupamento,IRBR3,rodrigo,0
+ITSA4,600,8.85,20221111,compra,rodrigo,rodrigo,0
+ITSA4,500,8.85,20221111,compra,rodrigo,rodrigo,0
+ITSA4,60,13.65,20221111,bonus_em_acoes,ITSA4,rodrigo,0
+MGLU3,100,3.51,20221111,compra,rodrigo,rodrigo,0
+ITSA4,400,9.84,20221110,compra,rodrigo,rodrigo,0
+BBAS3,100,36.40,20221110,compra,rodrigo,rodrigo,0
+ITUB4,100,27.12,20221110,compra,rodrigo,rodrigo,0
+ITSA4,200,10.50,20221107,compra,rodrigo,rodrigo,0
+CMIG4,200,11.65,20221107,compra,rodrigo,rodrigo,0
+IRBR3,1000,1.0,20221104,compra,rodrigo,rodrigo,0
+TAEE3,300,13.23,20221103,compra,rodrigo,rodrigo,0
