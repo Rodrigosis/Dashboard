@@ -7,7 +7,8 @@ class Analytics:
         self.moedas = pd.read_csv("dashboard/moedas.csv")
         self.proventos = pd.read_csv("dashboard/proventos.csv")
         self.trades = pd.read_csv("dashboard/trades.csv")
+        self.dolar = 5.10
 
     def provendos_ano():
-        df = self.cdo.copy()
+        df = self.cdi.copy()
         print(df)
