@@ -1,4 +1,11 @@
-fonte,valor,data,dono,tag
-rodrigo,24807.98,20230416,rodrigo,reservas
-dayane,12480.07,20230416,dayane,robank_dayane
-rodrigo,266.41,20230416,rodrigo,caixa_investimentos
+fonte,valor,data,dono,tag,tipo_transacao,comentario
+rodrigo,24807.98,20230416,rodrigo,reservas,entrada,
+dayane,12480.07,20230416,dayane,robank_dayane,entrada,
+rodrigo,266.41,20230416,rodrigo,caixa_investimentos,entrada,
+dayane,-300.00,20230503,dayane,robank_dayane,saida,saque velorio Bruno
+rendimento,50.70,20230619,dayane,robank_dayane,entrada,rendimento
+rodrigo,6923.78,20230526,rodrigo,reservas,entrada,deposito
+rodrigo,3100.00,20230526,rodrigo,caixa_investimentos,entrada,deposito
+rendimento,454.66,20230619,rodrigo,reservas,entrada,rendimento
+rodrigo,-3000.00,20230619,rodrigo,caixa_investimentos,saida,compra de dolar
+rendimento,23.01,20230619,rodrigo,caixa_investimentos,entrada,rendimento
