@@ -1,4 +1,8 @@
 fonte,quantiade,valor,data_negociacao,tipo_de_ordem,IRRF,moeda,dono
+BBAS3,100,55.63,20230612,juros_de_capital_proprio,0,real,rodrigo
+BBAS3,100,12.30,20230612,dividendos,0,real,rodrigo
+ITUB4,100,1.50,20230601,juros_de_capital_proprio,0,real,rodrigo
+ITUB4,100,1.50,20230502,juros_de_capital_proprio,0,real,rodrigo
 ITUB4,100,1.50,20230403,juros_de_capital_proprio,0,real,rodrigo
 ITSA4,1760,35.20,20230403,juros_de_capital_proprio,0,real,rodrigo
 BBAS3,100,29.92,20230331,juros_de_capital_proprio,0,real,rodrigo
@@ -20,7 +24,3 @@ TAEE3,300,32.91,20221205,dividendos,0,real,rodrigo
 TAEE3,300,13.10,20221205,dividendos,0,real,rodrigo
 BBAS3,100,53.93,20221130,juros_de_capital_proprio,0,real,rodrigo
 BBAS3,100,17.02,20221130,dividendos,0,real,rodrigo
-ITUB4,100,1.50,20230502,juros_de_capital_proprio,0,real,rodrigo
-ITUB4,100,1.50,20230601,juros_de_capital_proprio,0,real,rodrigo
-BBAS3,100,55.63,20230612,juros_de_capital_proprio,0,real,rodrigo
-BBAS3,100,12.13,20230612,dividendos,0,real,rodrigo
