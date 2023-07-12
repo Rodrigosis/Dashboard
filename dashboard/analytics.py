@@ -83,8 +83,8 @@ class Analytics:
         patrimonio_reserva = self.calcular_patrimonio_reservas(dono)
         patrimonio_acoes = self.calcular_patrimonio_acoes(dono)
 
-        # print(patrimonio_moeda)
-        # print(patrimonio_reserva)
+        print(patrimonio_moeda)
+        print(patrimonio_reserva)
         # print(patrimonio_acoes)
 
         real = patrimonio_moeda['proventos_real'] + patrimonio_reserva['reservas'] + patrimonio_reserva['caixa_investimentos'] + patrimonio_reserva['robank_dayane']
