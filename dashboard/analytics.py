@@ -114,6 +114,7 @@ class Analytics:
                     valor_compra += float(i['preco']) * float(i['quantidade'])
 
             valorizacao = (valor_hoje/valor_compra)-1
-            results[ativo] = {'price_today': price, 'quantidade': quantidade, 'valorizacao': valorizacao}
+            preco_medio = valor_compra/quantidade
+            results[ativo] = {'price_today': price, 'quantidade': quantidade, 'valorizacao': valorizacao, 'valor_investido': valor_compra, 'preco_medio': preco_medio}
         
         return results

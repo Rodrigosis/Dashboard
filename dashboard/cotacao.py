@@ -26,8 +26,11 @@ class Cotacao:
                 return self.memory[ativo]
 
         df = web.get_data_yahoo(ativo, actions = True)
-        price = df.iloc[-1]['Open']
+        price = float(df.iloc[-1]['Open'])
 
-        self.memory[ativo] = float(price)
+        if price == 0:
+             price = float(df.iloc[-2]['Open'])
+            
+        self.memory[ativo] = price
 
-        return float(price)
+        return price
