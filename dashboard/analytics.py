@@ -118,3 +118,39 @@ class Analytics:
             results[ativo] = {'price_today': price, 'quantidade': quantidade, 'valorizacao': valorizacao, 'valor_investido': valor_compra, 'preco_medio': preco_medio}
         
         return results
+    
+    def calcular_ativos_proventos(self, dono: str):
+        df = self.proventos.copy()
+        df = df[df['dono'] == dono]
+
+        lista_de_ativos = df['ativo']
+        lista_de_ativos = list(set(lista_de_ativos))
+
+        results = {}
+        for ativo in lista_de_ativos:
+            df_ativo = df[df['ativo'] == ativo]
+
+            proventos = df_ativo['valor'].sum()
+            
+            results[ativo] = {'proventos': proventos}
+        
+        return results
+    
+    def calcular_cdi_proventos(self, dono: str):
+        df = self.cdi.copy()
+        df = df[df['dono'] == dono]
+
+        lista_de_caixas = df['tag']
+        lista_de_caixas = list(set(lista_de_caixas))
+
+        results = {}
+        for caixa in lista_de_caixas:
+            df_caixa = df[df['tag'] == caixa]
+            valor = df_caixa['valor'].sum()
+
+            df_caixa_rendimento = df_caixa[df_caixa['fonte'] == 'rendimento']
+            rendimento = df_caixa_rendimento['valor'].sum()
+
+            results[caixa] = {'valor': valor, 'rendimento': rendimento}
+        
+        return results
