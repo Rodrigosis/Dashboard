@@ -1,14 +1,17 @@
 import pandas as pd
-from cotacao import Cotacao
+import os
+
+from scripts.cotacao import Cotacao
+
 
 class Analytics:
 
     def __init__(self) -> None:
-        self.cdi = pd.read_csv("CDI.csv")
-        self.moedas = pd.read_csv("moedas.csv")
-        self.proventos = pd.read_csv("proventos.csv")
-        self.trades = pd.read_csv("trades.csv")
-        self.dolar = 5.10
+        path = os.path.dirname(os.path.abspath(__file__))
+        self.cdi = pd.read_csv(path + "/../csv/CDI.csv")
+        self.moedas = pd.read_csv(path + "/../csv/moedas.csv")
+        self.proventos = pd.read_csv(path + "/../csv/proventos.csv")
+        self.trades = pd.read_csv(path + "/../csv/trades.csv")
         self.get_price = Cotacao().get_price
 
     def calcular_patrimonio_moeda(self, dono: str):
@@ -24,20 +27,6 @@ class Analytics:
         proventos_real = df_p[df_p['moeda'] == 'real'].sum()['valor']
 
         return {"dolares": dolares, "proventos_dolar": proventos_dolar, "proventos_real": proventos_real}
-
-
-    def calcular_patrimonio_reservas(self, dono: str):
-        df = self.cdi.copy()
-        df = df[df['dono'] == dono]
-        df_reservas = df[df['tag'] == 'reservas']
-        df_caixa_investimentos = df[df['tag'] == 'caixa_investimentos']
-        df_robank_dayane = df[df['tag'] == 'robank_dayane']
-        reservas = df_reservas['valor'].sum()
-        caixa_investimentos = df_caixa_investimentos['valor'].sum()
-        robank_dayane = df_robank_dayane['valor'].sum()
-
-        return {"reservas": reservas, "caixa_investimentos": caixa_investimentos, "robank_dayane": robank_dayane}
-
 
     def calcular_patrimonio_acoes(self, dono: str):
         df = self.trades.copy()
@@ -68,15 +57,14 @@ class Analytics:
     def calcular_patrimonio(self, dono: str):
         dolar_hoje = self.get_price('USDBRL=X')
         patrimonio_moeda = self.calcular_patrimonio_moeda(dono)
-        patrimonio_reserva = self.calcular_patrimonio_reservas(dono)
+        patrimonio_reserva = self.calcular_cdi_proventos(dono)
         patrimonio_acoes = self.calcular_patrimonio_acoes(dono)
 
-        # print(patrimonio_moeda)
-        # print(patrimonio_reserva)
-        # print(patrimonio_acoes)
+        real = 0
+        for key, caixa in patrimonio_reserva.items():
+            real += caixa['valor']
 
-        real = patrimonio_moeda['proventos_real'] + patrimonio_reserva['reservas'] + patrimonio_reserva['caixa_investimentos'] + patrimonio_reserva['robank_dayane']
-        dolar = patrimonio_moeda['proventos_dolar'] + patrimonio_moeda['dolares']
+        dolar = patrimonio_moeda['dolares']
         ativos_real = 0
         ativos_dolar = 0
 
@@ -86,12 +74,16 @@ class Analytics:
         for key, value in patrimonio_acoes['dolar'].items():
             ativos_dolar = (value['quantidade'] * value['preco_atual']) + ativos_dolar
 
-        print(f"Real: {real:,.2f}")
-        print(f"Dolar: {dolar:,.2f} ({dolar*dolar_hoje:,.2f})")
-        print(f"Ativos Real: {ativos_real:,.2f}")
-        print(f"Ativos Dolar: {ativos_dolar:,.2f} ({ativos_dolar*dolar_hoje:,.2f})")
+        patrimonio_total = real + ativos_real + (dolar * dolar_hoje) + (ativos_dolar * dolar_hoje)
 
-        return real + ativos_real + (dolar * dolar_hoje) + (ativos_dolar * dolar_hoje)
+        patrimonio = {"patrimonio_total": patrimonio_total,
+                      "patrimonio_moeda_real": real,
+                      "patrimonio_moeda_dolar": dolar,
+                      "patrimonio_ativos_real": ativos_real,
+                      "patrimonio_ativos_dolar": ativos_dolar,
+                      "dolar_hoje": dolar_hoje}
+
+        return patrimonio
 
     def calcular_valorizacao_ativos(self, dono: str):
         df = self.trades.copy()
