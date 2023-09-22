@@ -1,38 +1,38 @@
-fonte,valor,data,dono,tag,tipo_transacao,comentario
-rodrigo,24807.98,20230416,rodrigo,reservas,entrada,valor inicial
-dayane,12480.07,20230416,dayane,robank_dayane,entrada,valor inicial
-rodrigo,266.41,20230416,rodrigo,caixa_investimentos,entrada,valor inicial
-dayane,-300.00,20230503,dayane,robank_dayane,saida,saque velorio Bruno
-rodrigo,6923.78,20230526,rodrigo,reservas,entrada,deposito
-rodrigo,3100.00,20230526,rodrigo,caixa_investimentos,entrada,deposito
-rendimento,50.70,20230619,dayane,robank_dayane,entrada,rendimento
-rendimento,454.66,20230619,rodrigo,reservas,entrada,rendimento
-rodrigo,-3000.00,20230619,rodrigo,caixa_investimentos,saida,compra de dolar
-rendimento,23.01,20230619,rodrigo,caixa_investimentos,entrada,rendimento
-rodrigo,11900,20230620,rodrigo,caixa_investimentos,entrada,processo Egali
-rodrigo,4000,20230627,rodrigo,caixa_investimentos,entrada,deposito
-rodrigo,-5000,20230712,rodrigo,caixa_investimentos,saida,PC novo
-rendimento,216.13,20230712,rodrigo,reservas,entrada,rendimento
-rendimento,82.19,20230712,dayane,robank_dayane,entrada,rendimento
-rendimento,95.24,20230712,rodrigo,caixa_investimentos,entrada,rendimento
-rodrigo,5000,20230727,rodrigo,caixa_investimentos,entrada,deposito
-rodrigo,1348.98,20230731,rodrigo,caixa_investimentos,entrada,restituicao imposto de renda
-rodrigo,-10000,20230810,rodrigo,caixa_investimentos,saida,compra ações B3
-rendimento,266.75,20230810,rodrigo,reservas,entrada,rendimento
-rendimento,101.44,20230810,dayane,robank_dayane,entrada,rendimento
-rendimento,117.34,20230810,rodrigo,caixa_investimentos,entrada,rendimento
-proventos,955.07,20230811,rodrigo,caixa_investimentos,entrada,proventos de ações
-dayane,-600.00,20230814,dayane,robank_dayane,saida,manutenção do cochorro
-rodrigo,-800.00,20230814,rodrigo,caixa_investimentos,saida,pagar fatura cartão click
-rodrigo,341.15,20230816,rodrigo,caixa_investimentos,entrada,deposito
-rendimento,111.96,20230823,rodrigo,reservas,entrada,rendimento
-rendimento,40.98,20230823,dayane,robank_dayane,entrada,rendimento
-rendimento,28.35,20230823,rodrigo,caixa_investimentos,entrada,rendimento
-rodrigo,-32781.26,20230823,rodrigo,reservas,saida,troca de local da reserva
-rodrigo,32781,20230823,rodrigo,CDB DI Itaú,entrada,valor inicial
-rodrigo,4000,20230825,rodrigo,caixa_investimentos,entrada,deposito
-rendimento,34.68,20230904,rodrigo,caixa_investimentos,entrada,rendimento
-rodrigo,-12410.23,20230904,rodrigo,caixa_investimentos,saida,troca de local do caixa_investimentos
-rodrigo,12410,20230905,rodrigo,CDB PLUS Itaú,entrada,valor inicial
-rodrigo,71,20230905,rodrigo,CDB PLUS Itaú,entrada,deposito
-rodrigo,4000,20230906,rodrigo,CDB PLUS Itaú,entrada,deposito
+fonte,valor,data,dono,tag,tipo_transacao,comentario,moeda
+rodrigo,24807.98,20230416,rodrigo,reservas,entrada,valor inicial,real
+dayane,12480.07,20230416,dayane,robank_dayane,entrada,valor inicial,real
+rodrigo,266.41,20230416,rodrigo,caixa_investimentos,entrada,valor inicial,real
+dayane,-300.00,20230503,dayane,robank_dayane,saida,saque velorio Bruno,real
+rodrigo,6923.78,20230526,rodrigo,reservas,entrada,deposito,real
+rodrigo,3100.00,20230526,rodrigo,caixa_investimentos,entrada,deposito,real
+rendimento,50.70,20230619,dayane,robank_dayane,entrada,rendimento,real
+rendimento,454.66,20230619,rodrigo,reservas,entrada,rendimento,real
+rodrigo,-3000.00,20230619,rodrigo,caixa_investimentos,saida,compra de dolar,real
+rendimento,23.01,20230619,rodrigo,caixa_investimentos,entrada,rendimento,real
+rodrigo,11900,20230620,rodrigo,caixa_investimentos,entrada,processo Egali,real
+rodrigo,4000,20230627,rodrigo,caixa_investimentos,entrada,deposito,real
+rodrigo,-5000,20230712,rodrigo,caixa_investimentos,saida,PC novo,real
+rendimento,216.13,20230712,rodrigo,reservas,entrada,rendimento,real
+rendimento,82.19,20230712,dayane,robank_dayane,entrada,rendimento,real
+rendimento,95.24,20230712,rodrigo,caixa_investimentos,entrada,rendimento,real
+rodrigo,5000,20230727,rodrigo,caixa_investimentos,entrada,deposito,real
+rodrigo,1348.98,20230731,rodrigo,caixa_investimentos,entrada,restituicao imposto de renda,real
+rodrigo,-10000,20230810,rodrigo,caixa_investimentos,saida,compra ações B3,real
+rendimento,266.75,20230810,rodrigo,reservas,entrada,rendimento,real
+rendimento,101.44,20230810,dayane,robank_dayane,entrada,rendimento,real
+rendimento,117.34,20230810,rodrigo,caixa_investimentos,entrada,rendimento,real
+proventos,955.07,20230811,rodrigo,caixa_investimentos,entrada,proventos de ações,real
+dayane,-600.00,20230814,dayane,robank_dayane,saida,manutenção do cochorro,real
+rodrigo,-800.00,20230814,rodrigo,caixa_investimentos,saida,pagar fatura cartão click,real
+rodrigo,341.15,20230816,rodrigo,caixa_investimentos,entrada,deposito,real
+rendimento,111.96,20230823,rodrigo,reservas,entrada,rendimento,real
+rendimento,40.98,20230823,dayane,robank_dayane,entrada,rendimento,real
+rendimento,28.35,20230823,rodrigo,caixa_investimentos,entrada,rendimento,real
+rodrigo,-32781.26,20230823,rodrigo,reservas,saida,troca de local da reserva,real
+rodrigo,32781,20230823,rodrigo,CDB DI Itaú,entrada,valor inicial,real
+rodrigo,4000,20230825,rodrigo,caixa_investimentos,entrada,deposito,real
+rendimento,34.68,20230904,rodrigo,caixa_investimentos,entrada,rendimento,real
+rodrigo,-12410.23,20230904,rodrigo,caixa_investimentos,saida,troca de local do caixa_investimentos,real
+rodrigo,12410,20230905,rodrigo,CDB PLUS Itaú,entrada,valor inicial,real
+rodrigo,71,20230905,rodrigo,CDB PLUS Itaú,entrada,deposito,real
+rodrigo,4000,20230906,rodrigo,CDB PLUS Itaú,entrada,deposito,real

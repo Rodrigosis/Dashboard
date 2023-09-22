@@ -1,17 +1,105 @@
-.containers {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    background-color: #f3f3f3;
+.doc {
+    max-width: 940px;
+    margin: auto;
+    padding: 5px;
 }
 
-.box {
-    margin: 10px;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    border-radius: 20px;
+.imagem_001 img {
+    width: 600px;
+    position: absolute;
+    bottom: 500px;
+    right: 0px;
+}
+.imagem_002 img {
+    width: 600px;
+    position: absolute;
+    bottom: 100px;
+    right: 0px;
+}
+.imagem_003 img {
+    width: 600px;
+    position: absolute;
+    bottom: -300px;
+    right: 0px;
+}
+
+.header {
+    margin-top: 30px;
+}
+.table_header tbody tr{
+    height: 30px;
+    border-bottom: 1px solid #000000;
+    background-color: #e6e6e6;
+    text-align: center;
+}
+.table_header thead tr .col_ativo {
+    width: 150px;
+}
+.table_header thead tr .col_valor {
+    width: 150px;
+}
+.table_header thead tr .col_real {
+    width: 150px;
+}
+.table_header thead tr .col_percentual {
+    width: 100px;
+}
+
+.renda_fixa {
+    margin-top: 30px;
+}
+.table_renda_fixa tbody tr{
+    height: 30px;
+    border-bottom: 1px solid #000000;
+    background-color: #e6e6e6;
+    text-align: center;
+}
+.table_renda_fixa thead tr .col_ativo {
+    width: 150px;
+}
+.table_renda_fixa thead tr .col_valor {
+    width: 150px;
+}
+.table_renda_fixa thead tr .col_variacao {
+    width: 100px;
+}
+.table_renda_fixa thead tr .col_rendimento {
+    width: 100px;
+}
+
+.renda_variavel {
+    margin-top: 30px;
+}
+.table_ativos tbody tr{
+    height: 30px;
+    border-bottom: 1px solid #000000;
+    background-color: #e6e6e6;
+    text-align: center;
+}
+.table_ativos tbody tr .vazio{
     background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+}
+.table_ativos thead tr .col_ativo {
+    width: 100px;
+}
+.table_ativos thead tr .col_cotas {
+    width: 100px;
+}
+.table_ativos thead tr .col_valor {
+    width: 150px;
+}
+.table_ativos thead tr .col_variacao {
+    width: 100px;
+}
+.table_ativos thead tr .col_proventos {
+    width: 150px;
+}
+.table_ativos thead tr .col_vazio {
+    width: 10px;
+}
+.table_ativos thead tr .col_preco_medio {
+    width: 90px;
+}
+.table_ativos thead tr .col_preco_hoje {
+    width: 90px;
 }

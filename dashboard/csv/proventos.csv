@@ -1,4 +1,4 @@
-ativo,quantiade,valor,data_negociacao,tipo_de_ordem,IRRF,moeda,dono
+ativo,quantiade,valor,data_negociacao,tipo_de_ordem,Impostos,moeda,dono
 BBAS3,100,53.93,20221130,juros_de_capital_proprio,0,real,rodrigo
 BBAS3,100,17.02,20221130,dividendos,0,real,rodrigo
 TAEE3,300,51.03,20221205,juros_de_capital_proprio,0,real,rodrigo

@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from scripts.cotacao import Cotacao
+from dashboard.scripts.cotacao import Cotacao
 
 
 class Analytics:
@@ -104,10 +104,11 @@ class Analytics:
             for index, i in df_ativo.iterrows():
                 if i['tipo_de_ordem'] == 'compra':
                     valor_compra += float(i['preco']) * float(i['quantidade'])
-
+            
+            moeda = df_ativo['moeda'].to_list()[0]
             valorizacao = (valor_hoje/valor_compra)-1
             preco_medio = valor_compra/quantidade
-            results[ativo] = {'price_today': price, 'quantidade': quantidade, 'valorizacao': valorizacao, 'valor_investido': valor_compra, 'preco_medio': preco_medio}
+            results[ativo] = {'price_today': price, 'quantidade': quantidade, 'valorizacao': valorizacao, 'valor_investido': valor_compra, 'preco_medio': preco_medio, 'moeda': moeda}
         
         return results
     
@@ -143,6 +144,8 @@ class Analytics:
             df_caixa_rendimento = df_caixa[df_caixa['fonte'] == 'rendimento']
             rendimento = df_caixa_rendimento['valor'].sum()
 
-            results[caixa] = {'valor': valor, 'rendimento': rendimento}
+            moeda = df_caixa['moeda'].to_list()[0]
+
+            results[caixa] = {'valor': valor, 'rendimento': rendimento, 'moeda': moeda}
         
         return results
