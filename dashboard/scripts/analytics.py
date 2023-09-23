@@ -17,16 +17,14 @@ class Analytics:
     def calcular_patrimonio_moeda(self, dono: str):
         df = self.moedas.copy()
         df = df[df['dono'] == dono]
-        df = df[df['ativo'] == 'dolar']
-        df = df.sort_values(['data'])
-        dolares = df['valor'].sum()
 
-        df_p = self.proventos.copy()
-        df_p = df_p[df_p['dono'] == dono]
-        proventos_dolar = df_p[df_p['moeda'] == 'dolar'].sum()['valor']
-        proventos_real = df_p[df_p['moeda'] == 'real'].sum()['valor']
+        dolares = df[df['ativo'] == 'dolar']
+        dolares = dolares['valor'].sum()
 
-        return {"dolares": dolares, "proventos_dolar": proventos_dolar, "proventos_real": proventos_real}
+        reais = df[df['ativo'] == 'real']
+        reais = reais['valor'].sum()
+
+        return {"dolares": dolares, "reais": reais}
 
     def calcular_patrimonio_acoes(self, dono: str):
         df = self.trades.copy()
@@ -56,32 +54,44 @@ class Analytics:
 
     def calcular_patrimonio(self, dono: str):
         dolar_hoje = self.get_price('USDBRL=X')
-        patrimonio_moeda = self.calcular_patrimonio_moeda(dono)
-        patrimonio_reserva = self.calcular_cdi_proventos(dono)
-        patrimonio_acoes = self.calcular_patrimonio_acoes(dono)
 
-        real = 0
-        for key, caixa in patrimonio_reserva.items():
-            real += caixa['valor']
+        moeda = self.calcular_patrimonio_moeda(dono)
+        renda_fixa = self.calcular_cdi_proventos(dono)
+        acoes = self.calcular_patrimonio_acoes(dono)
 
-        dolar = patrimonio_moeda['dolares']
-        ativos_real = 0
-        ativos_dolar = 0
+        reais = moeda['reais']
+        dolares = moeda['dolares']
 
-        for key, value in patrimonio_acoes['real'].items():
-            ativos_real = (value['quantidade'] * value['preco_atual']) + ativos_real
+        renda_fixa_dolar = 0
+        renda_fixa_real = 0
+        for key, ativo in renda_fixa.items():
+            if ativo['moeda'] == 'real':
+                renda_fixa_real += ativo['valor']
+            elif ativo['moeda'] == 'dolar':
+                renda_fixa_dolar += ativo['valor']
 
-        for key, value in patrimonio_acoes['dolar'].items():
-            ativos_dolar = (value['quantidade'] * value['preco_atual']) + ativos_dolar
+        acoes_real = 0
+        acoes_dolar = 0
+        for key, value in acoes['real'].items():
+            acoes_real = (value['quantidade'] * value['preco_atual']) + acoes_real
 
-        patrimonio_total = real + ativos_real + (dolar * dolar_hoje) + (ativos_dolar * dolar_hoje)
+        for key, value in acoes['dolar'].items():
+            acoes_dolar = (value['quantidade'] * value['preco_atual']) + acoes_dolar
 
-        patrimonio = {"patrimonio_total": patrimonio_total,
-                      "patrimonio_moeda_real": real,
-                      "patrimonio_moeda_dolar": dolar,
-                      "patrimonio_ativos_real": ativos_real,
-                      "patrimonio_ativos_dolar": ativos_dolar,
-                      "dolar_hoje": dolar_hoje}
+        patrimonio = {"real_caixa": reais,
+                      "real_acoes": acoes_real,
+                      "real_renda_fixa": renda_fixa_real,
+                      "dolar_caixa": dolares,
+                      "dolar_acoes": acoes_dolar,
+                      "dolar_renda_fixa": renda_fixa_dolar}
+        
+        patrimonio_real = patrimonio['real_caixa'] + patrimonio['real_acoes'] + patrimonio['real_renda_fixa']
+        patrimonio_dolar =  patrimonio['dolar_caixa'] + patrimonio['dolar_acoes'] + patrimonio['dolar_renda_fixa']
+
+        patrimonio_total = patrimonio_real + (patrimonio_dolar*dolar_hoje)
+        patrimonio['patrimonio_real'] = patrimonio_real
+        patrimonio['patrimonio_dolar'] = patrimonio_dolar
+        patrimonio['patrimonio_total'] = patrimonio_total
 
         return patrimonio
 

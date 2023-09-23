@@ -7,8 +7,8 @@ class MakeReport:
 
     def __init__(self):
         self.calculadora =  Analytics()
-        dolar_hoje = self.calculadora.get_price('USDBRL=X')
-    
+        self.dolar_hoje = self.calculadora.get_price('USDBRL=X')
+            
     def tipo_moeda(self, moeda:str) -> str:
         if moeda == 'real':
             m = 'R$'
@@ -18,6 +18,71 @@ class MakeReport:
             m = '?'
 
         return m
+    
+    def percentual_carteira(self, total: float, valor: float, moeda: str) -> float:
+        dolar_hoje = self.dolar_hoje
+
+        if total != 0:
+            if moeda == 'real':
+                result = (valor/total)*100
+            elif moeda == 'dolar':
+                result = ((valor*dolar_hoje)/total)*100
+        else:
+            return 0
+        
+        return result
+    
+    def tabela_header(self, dono: str) -> str:
+        dolar_hoje = self.dolar_hoje
+        patrimonio = calculadora.calcular_patrimonio(dono=dono)
+        str_result = ""
+
+        result_dict = {}
+        result_dict['Real Renda Fixa'] = {
+            'valor': patrimonio['real_renda_fixa'], 'moeda': 'real',
+            'valor_reais': patrimonio['real_renda_fixa'],
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['real_renda_fixa'], 'real')}
+        result_dict['Real Ações'] = {
+            'valor': patrimonio['real_acoes'], 'moeda': 'real',
+            'valor_reais': patrimonio['real_acoes'],
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['real_acoes'], 'real')}
+        result_dict['Real Caixa'] = {
+            'valor': patrimonio['real_caixa'], 'moeda': 'real',
+            'valor_reais': patrimonio['real_caixa'],
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['real_caixa'], 'real')}
+        result_dict['Dolar Renda Fixa'] = {
+            'valor': patrimonio['dolar_renda_fixa'], 'moeda': 'dolar',
+            'valor_reais': (patrimonio['dolar_renda_fixa'] * dolar_hoje),
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['dolar_renda_fixa'], 'dolar')}
+        result_dict['Dolar Ações'] = {
+            'valor': patrimonio['dolar_acoes'], 'moeda': 'dolar',
+            'valor_reais': (patrimonio['dolar_acoes'] * dolar_hoje),
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['dolar_acoes'], 'dolar')}
+        result_dict['Dolar Caixa'] = {
+            'valor': patrimonio['dolar_caixa'], 'moeda': 'dolar',
+            'valor_reais': (patrimonio['dolar_caixa'] * dolar_hoje),
+            'percentual': self.percentual_carteira(patrimonio['patrimonio_total'], 
+                                                   patrimonio['dolar_caixa'], 'dolar')}
+        
+        for key, ativo in result_dict.items():
+            tipo_m = self.tipo_moeda(ativo['moeda'])
+
+            str_line = f"""
+                <tr>
+                    <td>{key}</td>
+                    <td>{tipo_m} {ativo['valor']:,.2f}</td>
+                    <td>R$ {ativo['valor_reais']:,.2f}</td>
+                    <td>% {ativo['percentual']:,.2f}</td>
+                </tr>
+"""
+            str_result += str_line
+
+        return str_result
     
     def tabela_renda_fixa(self, dono: str) -> str:
         renda_fixa = calculadora.calcular_cdi_proventos(dono=dono)
@@ -92,10 +157,12 @@ class MakeReport:
         return str_result
 
     def create_html(self, dono: str):
-        patrimonio_total = self.calculadora.calcular_patrimonio(dono)
+        dolar_hoje = self.dolar_hoje
+        patrimonio = calculadora.calcular_patrimonio(dono=dono)
 
         tabela_ativo = self.tabela_ativos(dono=dono)
         tabela_renda_fixa = self.tabela_renda_fixa(dono=dono)
+        tabela_header = self.tabela_header(dono=dono)
         html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +177,9 @@ class MakeReport:
 <body class="doc">
     <div class="header">
         <h1>Relátório patrimonial</h1>
-        <h3>Patrimonio total:  R$ 112,565.13 - % 6.08</h3>
+        <h3>Patrimonio total: R$ {patrimonio['patrimonio_total']:,.2f}</h3>
+        <h4>Patrimonio em reais: R$ {patrimonio['patrimonio_real']:,.2f}</h4>
+        <h4>Patrimonio em dolares: $ {patrimonio['patrimonio_dolar']:,.2f} (R$ {(patrimonio['patrimonio_dolar']*dolar_hoje):,.2f})</h4>
         <div class="imagem_001"><img src="img/foo.png"></div>
         <table class="table_header">
             <thead>
@@ -122,42 +191,7 @@ class MakeReport:
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Real Renda Fixa</td>
-                    <td>R$ 49,262.00</td>
-                    <td>R$ 49,262.00</td>
-                    <td>% 2.50</td>
-                </tr>
-                <tr>
-                    <td>Real Ações</td>
-                    <td>R$ 41,523.75</td>
-                    <td>R$ 41,523.75</td>
-                    <td>% 31.00</td>
-                </tr>
-                <tr>
-                    <td>Real Caixa</td>
-                    <td>R$ 2,481.00</td>
-                    <td>R$ 2,481.00</td>
-                    <td>% 0.00</td>
-                </tr>
-                <tr>
-                    <td>Dolar Renda Fixa</td>
-                    <td>$ 0.00</td>
-                    <td>R$ 0.00</td>
-                    <td>% 0.00</td>
-                </tr>
-                <tr>
-                    <td>Dolar Ações</td>
-                    <td>$ 2,001.00</td>
-                    <td>R$ 9,751.87</td>
-                    <td>% -0.50</td>
-                </tr>
-                <tr>
-                    <td>Dolar Caixa</td>
-                    <td>$ 2,467.94</td>
-                    <td>R$ 12,027.51</td>
-                    <td>% 0.00</td>
-                </tr>
+                {tabela_header}
             </tbody>
         </table>
 
@@ -204,5 +238,5 @@ class MakeReport:
 </body>
 </html>
         """
-        with open('dashboard/test_report.html', 'w') as f:
+        with open(f'dashboard/{dono}_report.html', 'w', encoding='utf-8') as f:
             f.write(html)
