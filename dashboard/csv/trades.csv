@@ -16,9 +16,10 @@ MMM,5,102.32,20230620,compra,dayane,dayane,0.75,dolar
 TAEE4,400,11.69,20230811,compra,rodrigo,rodrigo,0,real
 SUZB3,100,49.80,20230811,compra,rodrigo,rodrigo,0,real
 AESB3,300,10.99,20230927,compra,rodrigo,rodrigo,0.98,real
-RANI3,200,12.21,20230927,compra,rodrigo,rodrigo,0.73,real
+RANI3,100,12.21,20230927,compra,rodrigo,rodrigo,0.37,real
 TRPL4,200,22.68,20230927,compra,rodrigo,rodrigo,1.36,real
 MXRF11,100,10.92,20230927,compra,rodrigo,rodrigo,0.32,real
-TRPL4,50,22.69,20230927,compra,dayane,dayane,0.34,real
 RANI3,100,12.24,20230927,compra,dayane,dayane,0.36,real
 AESB3,100,10.98,20230927,compra,dayane,dayane,0.32,real
+CPLE3,100,8.24,20230928,compra,rodrigo,rodrigo,0.24,real
+CPLE3,100,8.25,20230928,compra,dayane,dayane,0.24,real
