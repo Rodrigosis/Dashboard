@@ -151,7 +151,7 @@ class Analytics:
             df_caixa = df[df['tag'] == caixa]
             valor = df_caixa['valor'].sum()
 
-            df_caixa_rendimento = df_caixa[df_caixa['fonte'] == 'rendimento']
+            df_caixa_rendimento = df_caixa[df_caixa['comentario'] == 'rendimento']
             rendimento = df_caixa_rendimento['valor'].sum()
 
             moeda = df_caixa['moeda'].to_list()[0]
