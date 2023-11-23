@@ -2,7 +2,7 @@ ativo,quantidade,preco,data_negociacao,tipo_de_ordem,fonte,dono,custo,moeda
 IRBR3,-967,0,20230125,agrupamento,IRBR3,rodrigo,0,real
 ITSA4,600,8.85,20221111,compra,rodrigo,rodrigo,0,real
 ITSA4,500,8.85,20221111,compra,rodrigo,rodrigo,0,real
-ITSA4,60,13.65,20221111,bonus_em_acoes,ITSA4,rodrigo,0,real
+ITSA4,60,0,20221111,bonus_em_acoes,ITSA4,rodrigo,0,real
 MGLU3,100,3.51,20221111,compra,rodrigo,rodrigo,0,real
 ITSA4,400,9.84,20221110,compra,rodrigo,rodrigo,0,real
 BBAS3,100,36.40,20221110,compra,rodrigo,rodrigo,0,real
