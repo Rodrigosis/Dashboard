@@ -1,3 +1,10 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+from typing import List, Tuple
+import os
+
 from dashboard.scripts.analytics import Analytics
 
 calculadora =  Analytics()
@@ -8,6 +15,9 @@ class MakeReport:
     def __init__(self):
         self.calculadora =  Analytics()
         self.dolar_hoje = self.calculadora.get_price('USDBRL=X')
+        self.data_acoes = []
+        self.data_r_fixa = []
+        self.data_patrimonio = []
             
     def tipo_moeda(self, moeda:str) -> str:
         if moeda == 'real':
@@ -18,6 +28,22 @@ class MakeReport:
             m = '?'
 
         return m
+    
+    def create_graphcs(self, dono: str, name: str, dados: List[Tuple]):
+        path = os.path.dirname(os.path.abspath(__file__))
+
+        labels = []
+        sizes = []
+        for i in dados:
+            if i[0] == dono:
+                labels.append(i[1])
+                sizes.append(i[2])
+
+        fig, ax = plt.subplots()
+        # fig.set_size_inches(18.5, 10.5)
+        ax.pie(sizes, labels=labels, autopct='%1.1f%%')
+        ax.set_facecolor(color=None)
+        plt.savefig(path + f"/../img/{name}.png", dpi=100)
     
     def percentual_carteira(self, total: float, valor: float, moeda: str) -> float:
         dolar_hoje = self.dolar_hoje
@@ -82,6 +108,8 @@ class MakeReport:
 """
             str_result += str_line
 
+            self.data_patrimonio.append((dono, key, ativo['valor_reais'], ativo['valor']))
+
         return str_result
     
     def tabela_renda_fixa(self, dono: str) -> str:
@@ -94,7 +122,7 @@ class MakeReport:
                 continue
 
             valor = ativo['valor']
-            valor = f'{tipo_m} {valor:,.2f}'
+            valor_str = f'{tipo_m} {valor:,.2f}'
             
             variacao = (ativo["rendimento"]/ativo["valor"])*100
             variacao = f'% {variacao:,.2f}'
@@ -105,12 +133,14 @@ class MakeReport:
             str_line = f"""
                 <tr>
                     <td>{key}</td>
-                    <td>{valor}</td>
+                    <td>{valor_str}</td>
                     <td>{variacao}</td>
                     <td>{rendimento}</td>
                 </tr>
 """
             str_result += str_line
+
+            self.data_r_fixa.append((dono, key, valor))
 
         return str_result
 
@@ -124,7 +154,7 @@ class MakeReport:
 
             quantidade = int(ativo['quantidade'])
             valor = ativo['price_today'] * ativo['quantidade']
-            valor = f'{tipo_m} {valor:,.2f}'
+            valor_str = f'{tipo_m} {valor:,.2f}'
 
             variacao = ativo['valorizacao'] * 100
             variacao = f'% {variacao:,.2f}'
@@ -144,7 +174,7 @@ class MakeReport:
                 <tr>
                     <td>{key}</td>
                     <td>{quantidade}</td>
-                    <td>{valor}</td>
+                    <td>{valor_str}</td>
                     <td>{variacao}</td>
                     <td>{prov}</td>
                     <td class="vazio"></td>
@@ -153,6 +183,8 @@ class MakeReport:
                 </tr>
 """
             str_result += str_line
+
+            self.data_acoes.append((dono, key, valor))
 
         return str_result
 
@@ -163,6 +195,11 @@ class MakeReport:
         tabela_ativo = self.tabela_ativos(dono=dono)
         tabela_renda_fixa = self.tabela_renda_fixa(dono=dono)
         tabela_header = self.tabela_header(dono=dono)
+
+        self.create_graphcs(dono, f'{dono}_acoes', self.data_acoes)
+        self.create_graphcs(dono, f'{dono}_data_r_fixa', self.data_r_fixa)
+        self.create_graphcs(dono, f'{dono}_data_patrimonio', self.data_patrimonio)
+
         html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +217,7 @@ class MakeReport:
         <h3>Patrimonio total: R$ {patrimonio['patrimonio_total']:,.2f}</h3>
         <h4>Patrimonio em reais: R$ {patrimonio['patrimonio_real']:,.2f}</h4>
         <h4>Patrimonio em dolares: $ {patrimonio['patrimonio_dolar']:,.2f} (R$ {(patrimonio['patrimonio_dolar']*dolar_hoje):,.2f})</h4>
-        <div class="imagem_001"><img src="img/foo.png"></div>
+        <div class="imagem_001"><img src="img/{dono}_data_patrimonio.png"></div>
         <table class="table_header">
             <thead>
                 <tr>
@@ -197,7 +234,7 @@ class MakeReport:
 
     </div>
     <div class="renda_fixa">
-        <div class="imagem_002"><img src="img/foo.png"></div>
+        <div class="imagem_002"><img src="img/{dono}_data_r_fixa.png"></div>
         <table class="table_renda_fixa">
             <thead>
                 <tr>
@@ -213,7 +250,7 @@ class MakeReport:
         </table>
     </div>
     <div class="renda_variavel">
-        <div class="imagem_003"><img src="img/foo.png"></div>
+        <div class="imagem_003"><img src="img/{dono}_acoes.png"></div>
         <table class="table_ativos">
             <thead>
                 <tr>
