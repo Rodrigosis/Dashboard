@@ -18,7 +18,7 @@ class MakeReport:
         self.data_acoes = []
         self.data_r_fixa = []
         self.data_patrimonio = []
-            
+
     def tipo_moeda(self, moeda:str) -> str:
         if moeda == 'real':
             m = 'R$'
@@ -184,13 +184,24 @@ class MakeReport:
 """
             str_result += str_line
 
-            self.data_acoes.append((dono, key, valor))
+            if key in ['MMM']:
+                self.data_acoes.append((dono, key, valor*self.dolar_hoje))
+            else:
+                self.data_acoes.append((dono, key, valor))
 
         return str_result
 
     def create_html(self, dono: str):
         dolar_hoje = self.dolar_hoje
         patrimonio = calculadora.calcular_patrimonio(dono=dono)
+        rentabilidade_ativos = calculadora.calcular_rentabilidade_ativos(dono=dono)
+        proventos_renda_fixa = calculadora.calcular_proventos_renda_fixa(dono=dono)
+        proventos_ativos = calculadora.calcular_proventos_ativos(dono=dono)
+
+        proventos_totais = proventos_renda_fixa + proventos_ativos
+        rendimento_total = rentabilidade_ativos + proventos_totais
+
+        rendimento_total_porcentagem = (rendimento_total/patrimonio['patrimonio_total']) * 100
 
         tabela_ativo = self.tabela_ativos(dono=dono)
         tabela_renda_fixa = self.tabela_renda_fixa(dono=dono)
@@ -217,6 +228,14 @@ class MakeReport:
         <h3>Patrimonio total: R$ {patrimonio['patrimonio_total']:,.2f}</h3>
         <h4>Patrimonio em reais: R$ {patrimonio['patrimonio_real']:,.2f}</h4>
         <h4>Patrimonio em dolares: $ {patrimonio['patrimonio_dolar']:,.2f} (R$ {(patrimonio['patrimonio_dolar']*dolar_hoje):,.2f})</h4>
+        </br>
+        <h5>Rentabilidade Ativos em reais: R$ {rentabilidade_ativos:,.2f}</h5>
+        <h5>Proventos Ativos: R$ {proventos_ativos:,.2f}</h5>
+        <h5>Proventos Renda Fixa em reais: R$ {proventos_renda_fixa:,.2f}</h5>
+        <h5>Proventos totais em reais: R$ {proventos_totais:,.2f}</h5>
+        </br>
+        <h5>Rentabilidade: R$ {rendimento_total:,.2f} ({f'% {rendimento_total_porcentagem:,.2f}'})</h5>
+
         <div class="imagem_001"><img src="img/{dono}_data_patrimonio.png"></div>
         <table class="table_header">
             <thead>

@@ -13,6 +13,7 @@ class Analytics:
         self.proventos = pd.read_csv(path + "/../csv/proventos.csv")
         self.trades = pd.read_csv(path + "/../csv/trades.csv")
         self.get_price = Cotacao().get_price
+        self.dolar_hoje = self.get_price('USDBRL=X')
 
     def calcular_patrimonio_moeda(self, dono: str):
         df = self.moedas.copy()
@@ -53,7 +54,7 @@ class Analytics:
 
 
     def calcular_patrimonio(self, dono: str):
-        dolar_hoje = self.get_price('USDBRL=X')
+        dolar_hoje = self.dolar_hoje
 
         moeda = self.calcular_patrimonio_moeda(dono)
         renda_fixa = self.calcular_cdi_proventos(dono)
@@ -159,3 +160,43 @@ class Analytics:
             results[caixa] = {'valor': valor, 'rendimento': rendimento, 'moeda': moeda}
         
         return results
+
+    def calcular_proventos_ativos(self, dono: str):
+        df = self.proventos.copy()
+        df = df[df['dono'] == dono]
+
+        dolares = df[df['moeda'] == 'dolar']
+        dolares = dolares['valor'].sum()
+
+        reais = df[df['moeda'] == 'real']
+        reais = reais['valor'].sum()
+
+        total = (dolares * self.dolar_hoje) + reais
+
+        return total
+
+    def calcular_proventos_renda_fixa(self, dono: str):
+        df = self.cdi.copy()
+        df = df[df['dono'] == dono]
+
+        df_rendimento = df[df['comentario'] == 'rendimento']
+        rendimento = df_rendimento['valor'].sum()
+
+        return rendimento
+
+    def calcular_rentabilidade_ativos(self, dono: str):
+        data_ativos = self.calcular_valorizacao_ativos(dono=dono)
+
+        rendimento = 0
+        for key, ativo in data_ativos.items():
+            valor_hoje = ativo['price_today'] * ativo['quantidade']
+            investido = ativo['valor_investido']
+
+            rend = valor_hoje - investido
+
+            if ativo['moeda'] == 'dolar':
+                rend = rend * self.dolar_hoje
+            
+            rendimento += rend
+        
+        return rendimento
