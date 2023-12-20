@@ -16,7 +16,7 @@ class Cotacao:
     def get_price(self, ativo: str):
         # assert len(date) == 8
         
-        if ativo in ['MMM', 'USDBRL=X']:
+        if ativo in ['USDBRL=X', 'MMM', 'PG', 'JNJ', 'T', 'XOM', 'CVX']:
             pass
         else:
             ativo = f'{ativo}.SA'

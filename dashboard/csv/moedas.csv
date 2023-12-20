@@ -4,9 +4,13 @@ dayane,dolar,946.63,5.281,18.93,compra,20221223,dayane,robank_dayane
 rodrigo,dolar,946.63,5.281,18.93,compra,20221223,rodrigo,
 rodrigo,dolar,952.53,5.249,18.93,compra,20221107,rodrigo,
 rodrigo,dolar,619.96,4.82,11.36,compra,20230619,rodrigo,
-rodrigo,dolar,-2046.4,0,3.0,venda,20230620,rodrigo,
-dayane,dolar,-511.6,0,0.75,venda,20230620,dayane,robank_dayane
-rodrigo,dolar,21,0,0,compra,20230619,rodrigo,Proventos 3M
-dayane,dolar,5.25,0,0,compra,20230619,dayane,Proventos 3M
-rodrigo,dolar,21,0,0,compra,20231213,rodrigo,Proventos 3M
-dayane,dolar,5.25,0,0,compra,20231213,dayane,Proventos 3M
+rodrigo,dolar,-2049.4,0,0,venda,20230620,rodrigo,compra ações
+dayane,dolar,-512.35,0,0,venda,20230620,dayane,compra ações
+MMM,dolar,21,0,0,compra,20230619,rodrigo,Proventos 3M
+MMM,dolar,5.25,0,0,compra,20230619,dayane,Proventos 3M
+MMM,dolar,21,0,0,compra,20231213,rodrigo,Proventos 3M
+MMM,dolar,5.25,0,0,compra,20231213,dayane,Proventos 3M
+rodrigo,dolar,-2379.81,0,0,venda,20231220,rodrigo,compra ações
+dayane,dolar,-448.98,0,0,venda,20231220,dayane,compra ações
+rodrigo,dolar,-4.2,0,0,venda,20231220,rodrigo,Emprestimo para Dayane
+rodrigo,dolar,4.2,0,0,compra,20231220,dayane,EMPRESTIMO

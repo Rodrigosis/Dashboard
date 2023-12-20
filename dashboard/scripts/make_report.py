@@ -36,8 +36,13 @@ class MakeReport:
         sizes = []
         for i in dados:
             if i[0] == dono:
-                labels.append(i[1])
-                sizes.append(i[2])
+                if i[2] < 0:
+                    print(f"VALOR NEGATIVO {dono} label {i[1]} - {str(i[2])}")
+                elif i[2] < 100:
+                    print(f"VALOR INSIGNIFICANTE {dono} label {i[1]} - {str(i[2])}")
+                else:
+                    labels.append(i[1])
+                    sizes.append(i[2])
 
         fig, ax = plt.subplots()
         # fig.set_size_inches(18.5, 10.5)
@@ -184,7 +189,7 @@ class MakeReport:
 """
             str_result += str_line
 
-            if key in ['MMM']:
+            if key in ['MMM', 'PG', 'JNJ', 'T', 'XOM', 'CVX']:
                 self.data_acoes.append((dono, key, valor*self.dolar_hoje))
             else:
                 self.data_acoes.append((dono, key, valor))
