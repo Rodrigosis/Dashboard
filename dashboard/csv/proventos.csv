@@ -73,3 +73,12 @@ BBAS3,100,0.31,20240229,dividendos,0,real,rodrigo
 PG,3,1.97,20240216,dividendos,0.85,dolar,rodrigo
 T,30,8.33,20240202,dividendos,0.80,dolar,rodrigo
 T,2,0.55,20240202,dividendos,0.05,dolar,dayane
+JNJ,3,3.57,20240306,dividendos,1.07,dolar,rodrigo
+JNJ,1,1.19,20240306,dividendos,0.36,dolar,dayane
+ITSA4,1848,77.05,20240308,juros_de_capital_proprio,0,real,rodrigo
+ITSA4,1848,174.29,20240308,juros_de_capital_proprio,0,real,rodrigo
+ITSA4,1848,555.32,20240308,dividendos,0,real,rodrigo
+ITSA4,1848,124.73,20240308,juros_de_capital_proprio,0,real,rodrigo
+ITUB4,100,22.9,20240308,juros_de_capital_proprio,0,real,rodrigo
+ITUB4,100,21.02,20240308,juros_de_capital_proprio,0,real,rodrigo
+ITUB4,100,112.51,20240308,dividendos,0,real,rodrigo
