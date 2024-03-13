@@ -71,10 +71,10 @@ BBAS3,100,22.08,20240229,dividendos,0,real,rodrigo
 BBAS3,100,0.85,20240229,dividendos,0,real,rodrigo
 BBAS3,100,0.31,20240229,dividendos,0,real,rodrigo
 PG,3,1.97,20240216,dividendos,0.85,dolar,rodrigo
-T,30,8.33,20240202,dividendos,0.80,dolar,rodrigo
-T,2,0.55,20240202,dividendos,0.05,dolar,dayane
-JNJ,3,3.57,20240306,dividendos,1.07,dolar,rodrigo
-JNJ,1,1.19,20240306,dividendos,0.36,dolar,dayane
+T,30,5.65,20240202,dividendos,2.42,dolar,rodrigo
+T,2,0.57,20240202,dividendos,0.24,dolar,dayane
+JNJ,3,2.5,20240306,dividendos,1.07,dolar,rodrigo
+JNJ,1,0.83,20240306,dividendos,0.36,dolar,dayane
 ITSA4,1848,77.05,20240308,juros_de_capital_proprio,0,real,rodrigo
 ITSA4,1848,174.29,20240308,juros_de_capital_proprio,0,real,rodrigo
 ITSA4,1848,555.32,20240308,dividendos,0,real,rodrigo
@@ -82,3 +82,9 @@ ITSA4,1848,124.73,20240308,juros_de_capital_proprio,0,real,rodrigo
 ITUB4,100,22.9,20240308,juros_de_capital_proprio,0,real,rodrigo
 ITUB4,100,21.02,20240308,juros_de_capital_proprio,0,real,rodrigo
 ITUB4,100,112.51,20240308,dividendos,0,real,rodrigo
+XOM,5,3.33,,dividendos,1.43,dolar,rodrigo
+XOM,1,0.66,,dividendos,0.28,dolar,dayane
+CVX,3,3.42,,dividendos,1.47,dolar,rodrigo
+CVX,1,1.14,,dividendos,0.49,dolar,dayane
+MMM,20,21.14,,dividendos,9.06,dolar,rodrigo
+MMM,5,5.28,,dividendos,2.27,dolar,dayane
